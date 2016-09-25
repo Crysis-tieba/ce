@@ -1,68 +1,68 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>孤岛危机/CRYENGINE渲染技术简介</title>
+        <title>孤岛危机/CRYENGINE渲染技术简介</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
 
-				<section>
-					<h3>孤岛危机系列/CRYENGINE渲染技术简介</h3>
-					<br>
-					<h5><a href="http://tieba.baidu.com/f?kw=%E5%AD%A4%E5%B2%9B%E5%8D%B1%E6%9C%BA&fr=wwwt">百度孤岛危机吧</a></h5>
-					
-				</section>
+                <section>
+                    <h3>孤岛危机系列/CRYENGINE渲染技术简介</h3>
+                    <br>
+                    <h5><a href="http://tieba.baidu.com/f?kw=%E5%AD%A4%E5%B2%9B%E5%8D%B1%E6%9C%BA&fr=wwwt">百度孤岛危机吧</a></h5>
+                    
+                </section>
 
-				<section>
-					<ul>
-						<li>本文目的为扫盲,不面向专业人士</li>
-						<li>欢迎提交<a href="https://github.com/Crysis-tieba/ce">Pull Request</a>参与撰写</li>
-					</ul>
-					
-				</section>
-				<section>
-					<h3>目录</h3>
-					<ul>
-						<li>孤岛危机1/弹头</li>
-						<li>孤岛危机2</li>
-						<li>孤岛危机3</li>
-						<li>Ryse/EaaS时代</li>
-						<li>CRYENGINE V</li>
-					</ul>
+                <section>
+                    <ul>
+                        <li>本文目的为扫盲,不面向专业人士</li>
+                        <li>欢迎提交<a href="https://github.com/Crysis-tieba/ce">Pull Request</a>参与撰写</li>
+                    </ul>
+                    
+                </section>
+                <section>
+                    <h3>目录</h3>
+                    <ul>
+                        <li>孤岛危机1/弹头</li>
+                        <li>孤岛危机2</li>
+                        <li>孤岛危机3</li>
+                        <li>Ryse/EaaS时代</li>
+                        <li>CRYENGINE V</li>
+                    </ul>
 
-				</section>
-			<section>
-				<section data-background="tom-deerberg-beach1.jpg">                   
+                </section>
+            <section>
+                <section data-background="9536003047_0cfdf99485_o.jpg">                   
                     <h2> 孤岛危机1</h2>    
 
                     CryEngine 2     
                 </section>
                 <section>
-                	（编写中……）
+                    （编写中……）
                 </section>
             </section>
 
             <section>
-				<section data-background="16663541546_3ff24f5d77_k.jpg">                   
+                <section data-background="16663541546_3ff24f5d77_k.jpg">                   
                     <h2> 孤岛危机2</h2>    
 
                     CryEngine 3.3/3.4       
@@ -72,146 +72,169 @@
                 <section>                   
                     <h3>延迟渲染</h3>    
                       <ul>
-						<li>Deferred Lighting/Light Pre-pass
-							<ul>
-								<li>先渲染一遍场景，输出一些基本的场景材质信息到GBuffer</li>
-								<li>在一个灯光缓冲(Light buffer)中累积光照</li>
-								<li>再渲染一遍场景，结合之前累积的光照信息以及材质信息得到最终渲染结果</li>
+                        <li>Deferred Lighting/Light Pre-pass
+                            <ul>
+                                <li>先渲染一遍场景，输出一些基本的场景材质信息到GBuffer</li>
+                                <li>在一个灯光缓冲(Light buffer)中累积光照</li>
+                                <li>再渲染一遍场景，结合之前累积的光照信息以及材质信息得到最终渲染结果</li>
 
-							</ul>
-						</li>
-						<li>
-							优点：减少GBuffer的大小，降低带宽。
-							<ul>
-								<li>适合X360/PS3等硬件</li>
+                            </ul>
+                        </li>
+                        <li>
+                            优点：减少GBuffer的大小，降低带宽。
+                            <ul>
+                                <li>适合X360/PS3等硬件</li>
+                            </ul>
+                        </li>
+                        <li>缺点：需要渲染场景两遍</li>
 
-							</ul>
-						</li>
-						<li>缺点：需要渲染场景两遍</li>
-
-					</ul>     
+                    </ul>     
                 </section>
                 <section>
-                	（编写中……）
+                    （编写中……）
                 </section>
             </section>
 
 
             <section>
-				<section data-background="ronny-muhle-00034b.jpg">                   
+                <section data-background="ronny-muhle-00034b.jpg">                   
                     <h2> 孤岛危机3</h2>    
 
                     CryEngine 3.5       
                 </section>
                 <section>
-                	<h3>大规模草丛</h3>
-                	Automerge Grass
-                	<img src="https://cdna2.artstation.com/p/assets/images/images/001/346/598/large/tom-deerberg-fields-ab1-grass-final.jpg?1444779290">
+                    <h3>大规模草丛</h3>
+                    Automerged Grass
+                    <img src="https://cdna2.artstation.com/p/assets/images/images/001/346/598/large/tom-deerberg-fields-ab1-grass-final.jpg?1444779290">
                 </section>
                 <section>
-                	（编写中……）
+                    <h3>大规模草丛</h3>
+                    <ul>
+                        <li>分区块，根据LOD等数据剔除，模拟</li>
+                        <li>将风力数据保存在力场中</li>
+                        <li>使用transient buffer等方法实现高效的内存管理与任务分派</li>                        
+                    </ul>
+                </section>
+                    <h3>间接照明</h3>
+                    <ul>
+                        <li>孤岛危机3的场景照明大多为静态</li>
+                        <li>PC:LPV+手动打光</li>
+                        <li>LPV精度差，由手动打光弥补</li>
+
+                    </ul>
+                <section>
+                    （编写中……）
                 </section>
             </section>
 
             <section>
-				<section data-background="tom-deerberg-oswal-final-05-polish.jpg">                   
+                <section data-background="tom-deerberg-oswal-final-05-polish.jpg">                   
                     <h2> Ryse/EaaS时期</h2>    
 
                     <h5>CRYENGINE 3.6~3.8</h5>       
                 </section>
                 <section>
-                	<h3>Tiled Deferred Shading</h3>
-                	<ul>
-                	<li>将屏幕划分成多个区块(tile)，每个区块保存光源列表</li>
-                	<li>大幅降低不必要的光源重绘</li>
-                	</ul>
-                	
+                    <h3>Tiled Deferred Shading</h3>
+                    <ul>
+                    <li>将屏幕划分成多个区块(tile)用以提出光源，每个区块保存影响该范围的光源列表</li>
+                    <li>GBuffer与渲染结果只读取和写入一次，大幅度减少带宽压力</li>
+                    <li>减少不必要的光源重绘</li>
+                    </ul>                   
                 </section>
+            <section>
+                <h3>Forward+</h3>
+                用于复杂材质，如毛发，眼睛等
+            </section>
                 <section>
-                	<h3>基于物理的渲染</h3>
-                	<ul>Cool Torrance模型
-                		<li>菲涅尔项:Fresnel</li>
-                		<li>法线分布项:GGX</li>
-                		<li>几何遮挡项：Schilck-Smith</li>
-                	</ul>
+                    <h3>基于物理的渲染</h3>
+                    <ul>高光：Cool Torrance模型
+                        <li>菲涅尔项:Schlick近似</li>
+                        <li>法线分布项:GGX</li>
+                        <li>几何遮挡项:Schilck-Smith</li>
+                    </ul>
+            <ul>漫反射：Oren-Nayer模型</ul>
 
                 </section>
                 <section>
-                	<h3>基于物理的渲染</h3>
-                	<ul>
-                		Image Based Lighting
-                		<ul>
-                			<li>Split-sum approximation(虚幻4，COD:BO2)</li>
-                			<li>将渲染方程拆分成两部分，预计算DFG项，存入一张2D LUT纹理中</li>
-                			<li>可改善不同粗糙度和视角下环境贴图的菲涅尔反射</li>
-                		</ul>	
+                    <h3>基于物理的渲染</h3>
+                    <ul>
+                        Image Based Lighting
+                        <ul>
+                            <li>Split-sum approximation(虚幻4，COD:BO2)</li>
+                            <li>将渲染方程拆分成两部分，预计算DFG项，存入一张2D LUT纹理中</li>
+                            <li>可改善不同粗糙度和视角下环境贴图的菲涅尔反射</li>
+                        </ul>   
 
-                	</ul>
+                    </ul>
                 </section>
                 <section>
-                	<h3>LOD</h3>
-                	<ul>
-                		<li>LOD级别根据模型在屏幕上的三角形平均覆盖率选择</li>
-                		<li>减少不必要的多边形数，减少aliasing</li>
-                	</ul>
-                	<img src="http://ww1.sinaimg.cn/large/8aeab96cgw1f85r596rmlj21hc0u0aev.jpg">
+                    <h3>LOD</h3>
+                    <ul>
+                        <li>LOD级别根据模型在屏幕上的三角形平均覆盖率选择</li>
+                        <li>减少不必要的多边形数，减少aliasing</li>
+                    </ul>
+                    <img src="http://ww1.sinaimg.cn/large/8aeab96cgw1f85r596rmlj21hc0u0aev.jpg">
                 </section>
                 <section>
-                	<h3>SVOGI (CE3.8)</h3>
-                	<img src="https://cdnb3.artstation.com/p/assets/images/images/001/752/159/large/simon-majar-screenshot0001.jpg?1452207591">
+                    <h3>SVOGI (CE3.8)</h3>
+                    <img src="https://cdnb3.artstation.com/p/assets/images/images/001/752/159/large/simon-majar-screenshot0001.jpg?1452207591">
                 </section>
-                <section>                	
-                	<h3>SVOGI（CE3.8）</h3>
-                	<ul>
-                		<li>CRYENGINE的SVOGI是一个半实时的实现</li>
-                		<li>CPU端建立SVO，在运行时实时streaming到GPU上，不在GPU上更新SVO</li>
-                		<li>通过在渲染RSM时注入动态物体的颜色近似实现动态间接照明</li>
-                	</ul>
-                	
+                <section>                   
+                    <h3>SVOGI（CE3.8）</h3>
+                    <ul>
+                        <li>CRYENGINE的SVOGI是一个半实时的实现</li>
+                        <li>CPU端建立SVO，在运行时实时streaming到GPU上，不在GPU上更新SVO</li>
+                        <li>通过在渲染RSM时注入动态物体的颜色近似实现动态间接照明</li>
+                    </ul>
+                    
                 </section>
                 <section>
-                	（编写中……）
+                    （编写中……）
                 </section>
             </section>
 
 
             <section>
-				<section data-background="3180e2d3572c11df67f17a9f6b2762d0f603c2c0.jpg">                   
+                <section data-background="3180e2d3572c11df67f17a9f6b2762d0f603c2c0.jpg">                   
                     <h2>CRYENGINE V</h2>          
                 </section>
                 <section>
-                	<h3>渲染管线2.0</h3>
-                	(编写中……)
+                    <h3>渲染管线2.0</h3>
+                    (编写中……)
                 </section>
                 <section>
-                	<h3>体积云</h3>
-                	<img src="https://cdnb1.artstation.com/p/assets/images/images/002/401/249/large/sam-santillo-untitled-5.jpg?1461293721">
+                    <h3>体积云</h3>
+                    <img src="https://cdnb1.artstation.com/p/assets/images/images/002/401/249/large/sam-santillo-untitled-5.jpg?1461293721">
                 </section>
                 <section>
-                	（编写中……）
+                    <h3>GPU粒子</h3>
+                    <img src="https://www.cryengine.com/files/news/SkyHarbor.jpg">
+                </section>
+                <section>
+                    （编写中……）
                 </section>
             </section>
-				
-			</div>
-		</div>
+                
+            </div>
+        </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-				transitionSpeed: 'fast',
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+                transitionSpeed: 'fast',
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>孤岛危机/CRYENGINE渲染技术简介</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="rust_logo.png">
+					<h3>孤岛危机系列/CRYENGINE渲染技术简介</h3>
+					<br>
+					<h5><a href="http://tieba.baidu.com/f?kw=%E5%AD%A4%E5%B2%9B%E5%8D%B1%E6%9C%BA&fr=wwwt">百度孤岛危机吧</a></h5>
+					
+				</section>
+
+				<section>
+					本文目的为扫盲
+					<br>
+					<br>
+					不面向专业人士
+				</section>
+				<section>
+					<h3>目录</h3>
+					<ul>
+						<li>孤岛危机1/弹头</li>
+						<li>孤岛危机2</li>
+						<li>孤岛危机3</li>
+						<li>Ryse/EaaS时代</li>
+						<li>CRYENGINE V</li>
+					</ul>
+
+				</section>
+			<section>
+				<section data-background="tom-deerberg-beach1.jpg">                   
+                    <h2> 孤岛危机1</h2>    
+
+                    CryEngine 2     
+                </section>
+            </section>
+
+            <section>
+				<section data-background="16663541546_3ff24f5d77_k.jpg">                   
+                    <h2> 孤岛危机2</h2>    
+
+                    CryEngine 3.3/3.4       
+                </section>
+
+                <section>                   
+                    <h3>延迟渲染</h3>    
+                      <ul>
+						<li>Deferred Lighting/Light Pre-pass
+							<ul>
+								<li>先渲染一遍场景，输出一些基本的场景材质信息到GBuffer</li>
+								<li>在一个灯光缓冲(Light buffer)中累积光照</li>
+								<li>再渲染一遍场景，结合之前累积的光照信息以及材质信息得到最终渲染结果</li>
+
+							</ul>
+						</li>
+						<li>
+							优点：减少GBuffer的大小，降低带宽。
+							<ul>
+								<li>适合X360/PS3等硬件</li>
+							</ul>
+						</li>
+
+					</ul>     
+                </section>
+            </section>
+
+
+            <section>
+				<section data-background="ronny-muhle-00034b.jpg">                   
+                    <h2> 孤岛危机3</h2>    
+
+                    CryEngine 3.5       
+                </section>
+            </section>
+
+            <section>
+				<section data-background="tom-deerberg-oswal-final-05-polish.jpg">                   
+                    <h2> Ryse/EaaS时期</h2>    
+
+                    <h5>CRYENGINE 3.6~3.8</h5>       
+                </section>
+            </section>
+
+
+            <section>
+				<section>                   
+                    <h2>CRYENGINE V</h2>          
+                </section>
+            </section>
+				<section>
+				<section data-markdown data-separator="---">
+                    <script type="text/template">
+                        ## Demo 1
+                        Slide 1
+
+                        ---
+                        ## Demo 1
+                        Slide 2
+                        ---
+                        ## Demo 1
+                        Slide 3
+                    </script>
+                </section>
+            </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

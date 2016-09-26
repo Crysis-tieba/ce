@@ -51,7 +51,7 @@
 
                 </section>
             <section>
-                <section data-background="9536003047_0cfdf99485_o.jpg">                   
+                <section data-background="http://ww2.sinaimg.cn/large/8aeab96cgw1f87fc3je3dj21z40u04qs.jpg">                   
                     <h2> 孤岛危机1</h2>    
 
                     CryEngine 2     
@@ -62,7 +62,7 @@
             </section>
 
             <section>
-                <section data-background="16663541546_3ff24f5d77_k.jpg">                   
+                <section data-background="http://ww1.sinaimg.cn/large/8aeab96cgw1f87fc507usj21kw0o7wxd.jpg">                   
                     <h2> 孤岛危机2</h2>    
 
                     CryEngine 3.3/3.4       
@@ -97,7 +97,7 @@
 
 
             <section>
-                <section data-background="ronny-muhle-00034b.jpg">                   
+                <section data-background="http://ww4.sinaimg.cn/large/8aeab96cgw1f87fc6ga5oj21hc0u0wr5.jpg">                   
                     <h2> 孤岛危机3</h2>    
 
                     CryEngine 3.5       
@@ -110,8 +110,8 @@
                 <section>
                     <h3>大规模草丛</h3>
                     <ul>
-                        <li>分区块，根据LOD等数据剔除，模拟</li>
-                        <li>将风力数据保存在力场中</li>
+                        <li>分区块管理草丛，剔除不必要的模型实例，计算lod</li>
+                        <li>使用16*16*16保存风力扰动</li>
                         <li>使用transient buffer等方法实现高效的内存管理与任务分派</li>                        
                     </ul>
                 </section>
@@ -123,6 +123,11 @@
                         <li>LPV精度差，由手动打光弥补</li>
                     </ul>
                 </section>
+                <section>
+                    <h3>间接照明-GIF</h3>
+
+                    <img src="http://ww2.sinaimg.cn/large/8aeab96cgw1f87f4bgef2g21ao0t6x6s.gif">
+                </section>
                     
                 <section>
                     （编写中……）
@@ -130,7 +135,7 @@
             </section>
 
             <section>
-                <section data-background="tom-deerberg-oswal-final-05-polish.jpg">                   
+                <section data-background="http://ww4.sinaimg.cn/large/8aeab96cgw1f87fc79j5rj21hc0u3ars.jpg">                   
                     <h2> Ryse/EaaS时期</h2>    
 
                     <h5>CRYENGINE 3.6~3.8</h5>       
@@ -145,7 +150,13 @@
                 </section>
             <section>
                 <h3>Forward+</h3>
-                用于复杂材质，如毛发，眼睛等
+                <ul>
+                    <li>将tiled deferred的思想用于前向渲染上</li>
+                    <li>读取TBDR产生的光源列表</li>
+                    <li>利用depth pre-pass避免不必要的重绘</li>
+                    <li>用于复杂材质，如毛发，眼睛等</li>
+                </ul>
+                
             </section>
                 <section>
                     <h3>基于物理的渲染</h3>
@@ -197,7 +208,7 @@
 
 
             <section>
-                <section data-background="3180e2d3572c11df67f17a9f6b2762d0f603c2c0.jpg">                   
+                <section data-background="http://ww3.sinaimg.cn/large/8aeab96cgw1f87fc45zv1j21hc0u0gta.jpg">                   
                     <h2>CRYENGINE V</h2>          
                 </section>
                 <section>

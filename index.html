@@ -57,6 +57,99 @@
                     CryEngine 2     
                 </section>
                 <section>
+                    <h3>Shader系统
+                    </h3>
+                    <ul>
+                        <li>Uber-shader</li>
+                        <li>预先生成不同程序变体，减少动态分支</li>
+                        <li>最小化状态切换</li>
+                        <li>减少不必要的寄存器占用</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>ZPass</h3>
+                    <ul>
+                        <li>预先渲染场景深度图</li>
+                        <li>减少pixel shader中不必要的渲染</li>
+                        <li>基于屏幕空间信息的渲染技术
+                            <ul>
+                                <li>SSAO，大气散射，后处理体积光……</li>
+                                <li>对之后的游戏画面技术影响深远</li>
+                            </ul></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>阴影</h3>
+                        <ul>
+                        <li>Cascaded Shadow Map</li>
+                        <li>渲染多张shadow map覆盖长距离阴影</li>
+                        <li>地形投影使用VSM</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Deferred Shadow Mask</h3>
+                    <ul>
+                        <li>将阴影输出至屏幕空间遮罩</li>
+                        <li>R通道存储平行光，GBA存储点光源</li>
+                        <li>可在屏幕空间处理软阴影</li>
+                        <li>优化渲染管线</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>地形AO</h3>
+                    <ul>
+                        <li>预烘培植被、地形与静态物体（brush）的AO</li>
+                        <li>保存进体纹理</li>
+                        <li>渲染时采样体纹理，输出至RT</li>
+                        <li>大幅度加强丛林光照的层次感</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>SSAO</h3>
+                    <ul>
+                        <li>基本思想：使用屏幕空间深度信息计算AO</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>植被</h3>
+                    <ul>
+                        <li>漫反射，高光，表面下散射，透射</li>
+                        <li>投射、散射效果基于视角变化</li>
+                        <li>可调真阴影与光照部分的混合比例，给予植被更强的体积感</li>
+                        <li>支持预渲染SH光照系数</li>
+                        <li>相比现代PBR，孤岛危机1没有使用复杂的光照模型，但给予美术人员更大的控制权</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>植被程序动画</h3>
+                    <ul>
+                        <li>分两部分：结构上的摆动；细节摆动</li>
+                        <li>结构摆动：根据场景中的风力源以及植被高度，作逐顶点风力模拟</li>
+                        <li>细节摆动：使用四个三角波的组合模拟风力,对模型进行形变</li>
+                        <li>模型形变由美术人员预先绘制</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>植被优化</h3>
+                    <ul>
+                        <li>批次渲染</li>
+                        <li>对于较远的植被(200~300m外)，替换成图片(billborad)</li>
+                        <li>生成Billboard时会预计算光照，使得远距离的植被也有很好的体积感</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>物体动态模糊</h3>
+                    <ul>
+                        <li>输出物体的速度方向与大小</li>
+                        <li>对于运动物体沿运动方向扩展边缘（velocity dilation）</li>
+                        <li>沿运动方向累积采样</li>
+                        <li>生成MB Mask，只对运动物体进行混合</li>
+                    </ul>
+                </section>
+                <section>
                     （编写中……）
                 </section>
             </section>
@@ -91,6 +184,47 @@
                     </ul>     
                 </section>
                 <section>
+                    <h3>Light Propagation Volume</h3>
+                    <ul>
+                        <li>I3D 2010论文</li>
+                        <li>第一个用于正式游戏项目的动态全局光照算法</li> 
+                        <img src="http://ww3.sinaimg.cn/large/8aeab96cgw1f8cuj6iu0oj20ja0auwey.jpg">
+                    </ul>
+                </section>
+                <section>
+                    <h3>Light Propagation Volume</h3>
+                    <ul>
+                        <li>基本思想：VPL，instant radiosity等方法的结合</li>
+                        <ul>
+                            <li>渲染RSM</li>
+                        <li>将得到的结果作为虚拟光源注入体纹理，以二阶SH系数表示</li>
+                        <li>在体纹理中沿6个方向传播</li>
+                        <li>将场景可见信息存入另一张体纹理，用于间接光照的投影</li>
+                        </ul>
+                        
+                    </ul>
+                </section>
+                <section>
+                    <h3>LPV技术的扩展</h3>
+                </section>
+                <section>
+                    <h3>多次反弹</h3>
+                    <img src="http://ww4.sinaimg.cn/large/8aeab96cgw1f8cuj2xm0ug215o0nfu0x.gif">
+                </section>
+                <section>
+                    <h3>受GI影响的粒子</h3>
+                    <img src="http://ww4.sinaimg.cn/large/8aeab96cgw1f8cuj50xtgg215o0nfu0x.gif">
+                </section>
+                <section>
+                    <h3>高光反射</h3>
+                    <li>沿反射方向ray march体纹理数据累积光照</li>
+                    <img src="http://ww3.sinaimg.cn/large/8aeab96cgw1f8cuj5pbirj20no062gmd.jpg">
+                </section>
+                <section>
+                    <h3>体渲染</h3>
+                    <img src="http://ww3.sinaimg.cn/mw690/8aeab96cgw1f8cuj5k0bnj20nr0dj0tn.jpg">
+                </section>
+                <section>
                     （编写中……）
                 </section>
             </section>
@@ -120,7 +254,7 @@
                     <ul>
                         <li>孤岛危机3的场景照明大多为静态</li>
                         <li>PC:LPV+手动打光</li>
-                        <li>LPV精度差，由手动打光弥补</li>
+                        <li>LPV精度低，由手动打光弥补</li>
                     </ul>
                 </section>
                 <section>
@@ -160,7 +294,7 @@
             </section>
                 <section>
                     <h3>基于物理的渲染</h3>
-                    <ul>高光：Cool Torrance模型
+                    <ul>高光：Cook Torrance模型
                         <li>菲涅尔项:Schlick近似</li>
                         <li>法线分布项:GGX</li>
                         <li>几何遮挡项:Schilck-Smith</li>

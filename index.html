@@ -105,11 +105,19 @@
                         <li>大幅度加强丛林光照的层次感</li>
                     </ul>
                 </section>
-                
+                <section>
+                    <h3>地形AO</h3>
+                    <img src="http://ww4.sinaimg.cn/large/8aeab96cgw1f8lbu4pn83j21b40qcqa2.jpg">
+                </section>
+                <section>
+                    <h3>SSAO</h3>
+                    <img src="http://ww2.sinaimg.cn/large/8aeab96cgw1f8lbuo4minj20hs06ogmg.jpg">
+                </section>                
                 <section>
                     <h3>SSAO</h3>
                     <ul>
                         <li>基本思想：使用屏幕空间深度信息计算AO</li>
+                        <li>广泛应用于之后的游戏中</li>
                     </ul>
                 </section>
                 <section>
@@ -225,6 +233,25 @@
                     <img src="http://ww3.sinaimg.cn/mw690/8aeab96cgw1f8cuj5k0bnj20nr0dj0tn.jpg">
                 </section>
                 <section>
+                    <h3>屏幕空间反射</h3>
+                    <img src="http://ww2.sinaimg.cn/large/8aeab96cgw1f8lc25qi5zj20zk0m8dpa.jpg">
+                </section>
+                <section>
+                    <h3>屏幕空间反射</h3>
+                    <ul>
+                        <li>首次出现在孤岛危机2中，广泛用于今天的游戏</li>
+                        <li>GBuffer提供了屏幕空间的场景信息，可以直接对其进行ray march算出光照</li>
+                        <li>优点：速度快，可以得到符合基于物理BRDF的高光形状
+                            <ul><li>见寒霜3的Stochastic SSR</li>
+                                <li>孤岛危机2、3中只是简单地叠加到最终渲染结果中</li></ul>
+                        </li>
+                        <li>缺点：无法获得屏幕空间外的反射信息
+                            <ul><li>Fall back to IBL</li></ul>
+                        </li>
+                        
+                    </ul>
+                </section>
+                <section>
                     （编写中……）
                 </section>
             </section>
@@ -269,10 +296,10 @@
             </section>
 
             <section>
-                <section data-background="http://ww4.sinaimg.cn/large/8aeab96cgw1f87fc79j5rj21hc0u3ars.jpg">                   
-                    <h2> Ryse/EaaS时期</h2>    
+                <section data-background="http://ww2.sinaimg.cn/large/8aeab96cgw1f8lbfvbtojj21kw0w0n7n.jpg">                   
+                    <h2> Ryse</h2>    
 
-                    <h5>CRYENGINE 3.6~3.8</h5>       
+                    <h5>CRYENGINE 3.6</h5>
                 </section>
                 <section>
                     <h3>Tiled Deferred Shading</h3>
@@ -322,24 +349,51 @@
                     </ul>
                     <img src="http://ww1.sinaimg.cn/large/8aeab96cgw1f85r596rmlj21hc0u0aev.jpg">
                 </section>
-                <section>
-                    <h3>SVOGI (CE3.8)</h3>
-                    <img src="https://cdnb3.artstation.com/p/assets/images/images/001/752/159/large/simon-majar-screenshot0001.jpg?1452207591">
-                </section>
-                <section>                   
-                    <h3>SVOGI（CE3.8）</h3>
-                    <ul>
-                        <li>CRYENGINE的SVOGI是一个半实时的实现</li>
-                        <li>CPU端建立SVO，在运行时实时streaming到GPU上，不在GPU上更新SVO</li>
-                        <li>通过在渲染RSM时注入动态物体的颜色近似实现动态间接照明</li>
-                    </ul>
-                    
-                </section>
+                
+                
                 <section>
                     （编写中……）
                 </section>
             </section>
 
+            <section>
+                <section data-background="http://ww4.sinaimg.cn/large/8aeab96cgw1f87fc79j5rj21hc0u3ars.jpg">
+                    <h2>EaaS时期</h2>    
+
+                    <h5>CRYENGINE 3.6~3.8</h5>     
+                </section>
+                <section>
+                    <h3>SVOGI</h3>
+                    <img src="https://cdnb3.artstation.com/p/assets/images/images/001/752/159/large/simon-majar-screenshot0001.jpg?1452207591">
+                </section>
+                <section>                   
+                    <h3>SVOGI</h3>
+                    <ul>
+                        <li>CRYENGINE的SVOGI是一个半实时的实现</li>
+                        <li>CPU端建立SVO，在运行时实时streaming到GPU上，不在GPU上更新SVO</li>
+                        <li>通过在渲染RSM时注入动态物体的颜色近似实现动态间接照明</li>
+                    </ul>                    
+                </section>
+                <section>
+                    <h3>SVOGI (GIF)</h3>
+                    <img src="http://ww4.sinaimg.cn/large/8aeab96cgw1f8lccb6lh3g21be0qoqv6.gif">
+                </section>
+                <section>
+                    <h3>体积光</h3>
+                    <img src="http://ww2.sinaimg.cn/large/8aeab96cgw1f8lbfttpc6j21kw0w0tc8.jpg">
+                </section>
+                <section>
+                    <h3>体积光</h3>
+                    <ul>
+                        <li>方法类似寒霜3</li>
+                        <li>构建视锥体形状的体素，保存大气参数</li>
+                        <li>ray march体纹理，采样shadow map累积光照</li>
+                    </ul>
+                </section>
+                <section>
+                    
+                </section>
+            </section>
 
             <section>
                 <section data-background="http://ww3.sinaimg.cn/large/8aeab96cgw1f87fc45zv1j21hc0u0gta.jpg">                   
@@ -352,6 +406,17 @@
                 <section>
                     <h3>体积云</h3>
                     <img src="https://cdnb1.artstation.com/p/assets/images/images/002/401/249/large/sam-santillo-untitled-5.jpg?1461293721">
+                </section>
+                <section>
+                    <ul>
+                        <li>采用了《地平线：黎明时分》的方法</li>
+                        <li>基本思想
+                            <ul>
+                                <li>通过ray march Perlin和Worley等噪声模拟低空积雨云的形状</li>
+                                <li>在累积光照时使用更加复杂的光照模型，如Powder效果，多重散射</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
                 <section>
                     <h3>GPU粒子</h3>
